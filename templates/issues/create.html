@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %} Create Issue {% endblock title %}
+
+{% block content %}
+<h1 class="mt-2">Create Issue</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_div }}
+    <input type="submit" class="btn btn-success" value="Create Issue">
+</form>
+
+{% endblock content %}
