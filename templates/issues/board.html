@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% block title %}Issues{% endblock %}
+
+{% block content %}
+<h1>Issues</h1>
+
+<div class="container text-center">
+    <div class="row">
+        <div class="col d-flex flex-column">
+            <!-- to do column by accessing issues_todo -->
+            <h2><u>To do</u></h2>
+            {% for issue in issues_todo %}
+            <div class="card shadow-lg bg-dark text-bg-dark mb-2">
+                <div class="card-body">
+                    <h5 class="card-title
+                    {% if issue.priority.name  == 'high' %}
+                    text-danger
+                    {% elif issue.priority.name  == 'medium' %}
+                    text-warning
+                    {% else %}
+                    text-success
+                    {% endif %}
+                    ">
+                        {{ issue.summary }}
+                    </h5>
+                    <small class="card-subtitle"><u>Reported by: {{ issue.reporter }}</u></small>
+                    <p class="card-text issue_description">
+                        {{ issue.description }}</p>
+                    <a href="{% url 'detail' issue.id %}" class="btn btn-primary">See more ...</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="col d-flex flex-column">
+            <!-- in progress column by accessing issues_in_progress -->
+            <h2><u>In progress</u></h2>
+            {% for issue in issues_in_progress %}
+            <div class="card shadow-lg bg-dark text-bg-dark mb-2">
+                <div class="card-body">
+                    <h5 class="card-title
+                    {% if issue.priority.name  == 'high' %}
+                    text-danger
+                    {% elif issue.priority.name  == 'medium' %}
+                    text-warning
+                    {% else %}
+                    text-success
+                    {% endif %}
+                    ">
+                        {{ issue.summary }}
+                    </h5>
+                    <small class="card-subtitle"><u>Reported by: {{ issue.reporter }}</u></small>
+                    <p class="card-text issue_description">
+                        {{ issue.description }}</p>
+                    <a href="{% url 'detail' issue.id %}" class="btn btn-primary">See more ...</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="col d-flex flex-column">
+            <!-- done column by accessing issues_done -->
+            <h2><u>Done</u></h2>
+            {% for issue in issues_done %}
+            <div class="card shadow-lg bg-dark text-bg-dark mb-2">
+                <div class="card-body">
+                    <h5 class="card-title
+                    {% if issue.priority.name  == 'high' %}
+                    text-danger
+                    {% elif issue.priority.name  == 'medium' %}
+                    text-warning
+                    {% else %}
+                    text-success
+                    {% endif %}
+                    ">
+                        {{ issue.summary }}
+                    </h5>
+                    <small class="card-subtitle"><u>Reported by: {{ issue.reporter }}</u></small>
+                    <p class="card-text issue_description">
+                        {{ issue.description }}</p>
+                    <a href="{% url 'detail' issue.id %}" class="btn btn-primary">See more ...</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

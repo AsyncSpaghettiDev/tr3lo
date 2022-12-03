@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 
@@ -50,3 +51,6 @@ class Issue(models.Model):
 
     def __str__(self):
         return self.summary
+
+    def get_absolute_url(self):
+        return reverse('detail', args=[str(self.id)])

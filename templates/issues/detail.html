@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ issue.summary }} {% endblock title %}
+
+{% block content %}
+<h1> <u>Issue #{{ issue.id }}</u> </h1>
+<h2>{{ issue.summary }}</h2>
+<p>
+    Stage:
+    <span class="badge
+    {% if issue.status.name == 'to do' %}
+    text-bg-info
+    {% elif issue.status.name == 'in progress' %}
+    text-bg-warning
+    {% else %}
+    text-bg-success
+    {% endif %}
+    ">
+        {{ issue.status.name }}
+    </span>
+</p>
+<p>Priority:
+    <span class="badge
+    {% if issue.priority.name  == 'high' %}
+    text-bg-danger
+    {% elif issue.priority.name  == 'medium' %}
+    text-bg-warning
+    {% else %}
+    text-bg-success
+    {% endif %}
+    ">
+        {{ issue.priority.name }}
+    </span>
+</p>
+<p>{{ issue.description }}</p>
+<p><b>Assignee: </b> <span class="badge text-bg-info">{{issue.assignee}}</span> </p>
+<p><b>Reported by: </b> <span class="badge text-bg-warning">{{issue.reporter}}</span> </p>
+
+<p><b>Reported at: </b> {{issue.created_at}} </p>
+<p><b>Last update: </b> {{issue.updated_at}} </p>
+<div class="d-inline-flex gap-2">
+    <a href="{% url 'board' %}" class="btn btn-primary">Go Back</a>
+    {% if user.username == issue.reporter.username %}
+
+    <a href="{% url 'update' issue.id %}" class="btn btn-warning">Edit</a>
+    <a href="{% url 'delete' issue.id %}" class="btn btn-danger">Delete</a>
+    {% endif %}
+</div>
+{% endblock content %}

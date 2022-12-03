@@ -8,6 +8,7 @@
 <form method="POST">
     {% csrf_token %}
     {{ form.as_div }}
+    <a href="{% url 'board' %}" class="btn btn-primary">Go Back</a>
     <input type="submit" class="btn btn-success" value="Create Issue">
 </form>
 
