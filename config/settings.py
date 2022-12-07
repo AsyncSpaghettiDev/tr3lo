@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "issues",
     "pages",
+    "accounts",
 ]
 
 MIDDLEWARE = [
@@ -126,3 +127,12 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Redirect to home URL after login (Default redirects to /accounts/profile/)
+LOGIN_REDIRECT_URL = "home"
+
+# Email backend
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+# Custom user model
+AUTH_USER_MODEL = "accounts.CustomUser"

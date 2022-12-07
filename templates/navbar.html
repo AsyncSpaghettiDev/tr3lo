@@ -1,16 +1,50 @@
 {% load static %}
-<nav class="navbar bg-dark navbar-dark">
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="{% url 'home' %}">
             Not Trello Clone
         </a>
-        <div class="navbar-nav flex-row">
-            <a class="nav-link px-2 me-2" href="{% url 'home' %}">Home</a>
-            <a class="nav-link px-2 me-2" href="{% url 'about' %}">About us</a>
-            <a class="nav-link px-2 me-2" href="{% url 'board' %}">Issues Board</a>
-            {% if user.is_authenticated %}
-            <a class="nav-link px-2 me-2" href="{% url 'create' %}">Create Issue</a>
-            {% endif %}
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link px-2 me-2" href="{% url 'home' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-2 me-2" href="{% url 'about' %}">About us</a>
+                </li>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-2 me-2" href="{% url 'board' %}">Issues Board</a>
+                </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        {{ user.username }}
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item px-2 me-2" href="{% url 'create' %}">Create Issue</a></li>
+                        <!-- change password -->
+                        <li><a class="dropdown-item px-2 me-2" href="{% url 'password_change' %}">Change Password</a>
+                        </li>
+                        <li><a class="dropdown-item px-2 me-2" href="{% url 'logout' %}">Logout</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link px-2 me-2" href="{% url 'login' %}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-2 me-2" href="{% url 'signup' %}">Sign up</a>
+                </li>
+                {% endif %}
+            </ul>
         </div>
     </div>
 </nav>
